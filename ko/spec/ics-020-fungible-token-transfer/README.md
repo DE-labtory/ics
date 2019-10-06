@@ -318,6 +318,6 @@ function onTimeoutPacketClose(packet: Packet) {
 2019년 7월 29일 - 주요 수정; 정리
 2019년 8월 25일 - 주요 수정; 더 많은 정리
 
-## Copyright
+## 저작권
 
 이 게시물의 모든 내용은 [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0) 라이센스에 의해 보호받습니다.
