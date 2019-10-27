@@ -138,13 +138,13 @@ type getCurrentHeight = () => uint64
 
 호스트 상태 머신은 표준 이진 직렬화로 [ICS 2 ](../ics-002-client-semantics)의 요구 사항을 충족하는 고유한 ` ConsensusState` 유형을 정의해야합니다.
 
-Host state machines MUST provide the ability to introspect their own consensus state, with `getConsensusState`:
+호스트 상태 머신은 반드시 `getConsensusState` 하여 자체 컨센서스 상태를 조사 할 수있는 기능을 제공해야합니다.
 
 ```typescript
 type getConsensusState = (height: uint64) => ConsensusState
 ```
 
-`getConsensusState` MUST return the consensus state for at least some number `n` of contiguous recent heights, where `n` is constant for the host state machine. Heights older than `n` MAY be safely pruned (causing future calls to fail for those heights).
+`getConsensusState` 는 적어도 몇 개의 `n` 개의 연속 된 최근 높이에 대한 합의 상태를 반환해야합니다. 여기서 `n` 은 호스트 상태 시스템에 대해 일정합니다. `n` 보다 오래된 키는 안전하게 정리할 수 있습니다 (이러한 키로 인해 향후 호출이 실패 할 수 있음).
 
 호스트 상태 머신은 `getStoredRecentConsensusStateCount` 하여 저장된 최근 컨센서스 상태 카운트 `n`을 조회 할 수 있는 기능을 제공해야합니다.
 
@@ -160,8 +160,8 @@ type getStoredRecentConsensusStateCount = () => uint64
 type getCommitmentPrefix = () => CommitmentPrefix
 ```
 
-The result `CommitmentPrefix` is the prefix used by the host state machine's key-value store.
-With the `CommitmentRoot root` and `CommitmentState state` of the host state machine, the following property MUST be preserved:
+`CommitmentPrefix` 결과는 호스트 상태 시스템의 키-값 저장소가 사용하는 접두사입니다.
+호스트 상태 시스템의 `CommitmentRoot root` 및 `CommitmentState state` 에서는 다음 특성이 유지되어야합니다.
 
 ```typescript
 if provableStore.get(path) === value {
@@ -176,19 +176,19 @@ if provableStore.get(path) === value {
 }
 ```
 
-For a host state machine, the return value of `getCommitmentPrefix` MUST be constant.
+호스트 상태 머신의 경우 `getCommitmentPrefix` 의 리턴 값은 일정해야합니다.
 
 ### Port system
 
-Host state machines MUST implement a port system, where the IBC handler can allow different modules in the host state machine to bind to uniquely named ports. Ports are identified by an `Identifier`.
+호스트 상태 머신은 반드시 포트 시스템을 구현해야하며, 여기서 IBC 핸들러는 호스트 상태 머신의 다른 모듈이 고유하게 명명 된 포트에 바인딩 할 수 있도록합니다. 포트는 식별자로 `Identifier` 됩니다.
 
-Host state machines MUST permission interaction with the IBC handler such that:
+호스트 상태 머신은 반드시 IBC 핸들러와의 상호 작용을 허가해야합니다.
 
 - 모듈이 포트에 바인딩되면 모듈이 포트를 풀 때까지 다른 모듈은 해당 포트를 사용할 수 없습니다
-- A single module can bind to multiple ports
+- 단일 모듈은 여러 포트에 바인딩 할 수 있습니다
 - 포트는 선착순으로 할당되며 상태 머신이 처음 시작될 때 알려진 모듈에 대한 "예약 된" 포트를 바인딩 할 수 있습니다
 
-This permissioning can be implemented with unique references (object capabilities) for each port (a la the Cosmos SDK), with source authentication (a la Ethereum), or with some other method of access control, in any case enforced by the host state machine. See [ICS 5](../ics-005-port-allocation) for details.
+이 권한은 각 포트 (Cosmos SDK) 또는 소스 인증 (la Ethereum) 또는 호스트 상태 시스템에 의해 시행되는 다른 액세스 제어 방법을 통해 고유 한 참조 (객체 기능)로 구현할 수 있습니다. . 자세한 내용은 [ICS 5](../ics-005-port-allocation) 를 참조하십시오.
 
 특정 IBC 기능을 사용하려는 모듈은 특정 핸들러 기능을 구현할 수 있습니다 (예: 다른 상태 머신의 관련 모듈을 사용하여 채널 핸드 셰이크에 로직 추가).
 
