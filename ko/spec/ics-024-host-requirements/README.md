@@ -250,10 +250,10 @@ key/value store 기능 및 합의 상태(consensus state type) 유형은 단일 
 
 ## 히스토리
 
-29 April 2019 - Initial draft
-11 May 2019 - Rename "RootOfTrust" to "ConsensusState"
-25 June 2019 - Use "ports" instead of module names
-18 August 2019 - Revisions to module system, definitions
+2019년 4월 2 일- 초안 작성
+2019년 5월 11일- "RootOfTrust"의 이름을 "ConsensusState"로 변경
+2019년 6월 25일-모듈 이름 대신 "포트" 사용
+2019년 8월 18일-모듈 시스템,정의 수정
 
 ## 저작권
 
