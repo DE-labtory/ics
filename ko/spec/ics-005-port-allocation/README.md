@@ -151,7 +151,7 @@ function bindPort(id: Identifier) {
 }
 ```
 
-#### Transferring ownership of a port
+#### 포트 소유권 이전
 
 호스트 상태 머신이 객체 기능(object-capabilities)을 지원하는 경우, 포트 참조가 베어러 기능(bearer capability)이므로 추가 프로토콜이 필요하지 않습니다. 그렇지 않은 경우 IBC 핸들러는 다음 `transferPort` 함수를 구현할 수 있습니다.
 
