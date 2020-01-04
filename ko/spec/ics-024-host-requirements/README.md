@@ -186,7 +186,7 @@ if provableStore.get(path) === value {
 
 호스트 상태 머신은 반드시 포트 시스템을 구현해야하며, 여기서 IBC 핸들러는 호스트 상태 머신의 다른 모듈이 고유하게 명명 된 포트에 바인딩 할 수 있도록합니다. 포트는 식별자로 `Identifier` 됩니다.
 
-Host state machines MUST implement permission interaction with the IBC handler such that:
+호스트 상태 머신은 다음과 같이 IBC 핸들러와 권한 상호 작용을 구현해야합니다.
 
 - 모듈이 포트에 바인딩되면 모듈이 포트를 풀 때까지 다른 모듈은 해당 포트를 사용할 수 없습니다
 - 단일 모듈은 여러 포트에 바인딩 할 수 있습니다
@@ -240,7 +240,7 @@ IBC 패킷 데이터 및 상태 벡터에 직접 저장되지는 않지만 relay
 
 이 시스템에는 최소한 다음과 같이 로그 항목을 내보내는 함수와 과거 로그를 조회하는 함수가 하나 이상 있어야합니다.
 
-The function `emitLogEntry` can be called by the state machine during transaction execution to write a log entry:
+트랜잭션 실행 중 상태 머신이 `emitLogEntry` 함수를 호출하여 로그 항목을 작성할 수 있습니다.
 
 ```typescript
 type emitLogEntry = (topic: string, data: []byte) => void
