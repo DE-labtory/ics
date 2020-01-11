@@ -322,6 +322,6 @@ Jul 29, 2019 - Major revisions; cleanup
 
 Aug 25, 2019 - Major revisions, more cleanup
 
-## Copyright
+## 저작권
 
 이 게시물의 모든 내용은 [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0) 라이센스에 의해 보호받습니다.
